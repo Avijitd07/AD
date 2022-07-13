@@ -23,6 +23,7 @@ const isValidBody = function(x) {
 
 const createBook = async function(req, res) {
     try {
+        //authorization
         let TokenFromUser = req.userId
         if (!TokenFromUser) return res.status(400).send({ status: false, message: "is not a valid token id" })
 
@@ -187,6 +188,7 @@ const updateBook = async function(req, res) {
 
     try {
         let bookId = req.params.bookId
+        //authorization
         let TokenFromUser = req.userId
 
         // checking for valid bookId
@@ -279,6 +281,8 @@ const updateBook = async function(req, res) {
 const deleteBookById = async function(req, res) {
     try {
         let enteredBookId = req.params.bookId
+
+        //authorization
         let TokenFromUser = req.userId
 
         if (!ObjectId.isValid(enteredBookId)) return res.status(400).send({ status: false, message: "Bad Request. BookId invalid" })

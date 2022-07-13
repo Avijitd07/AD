@@ -14,6 +14,7 @@ const isValidTitle = function (x) {
 const isValid = function (x) {
     if (typeof x === "undefined" || x === null) return false;
     if (typeof x === "string" && x.trim().length === 0) return false;
+    
     return true;
 };
 const isValidBody = function (x) {

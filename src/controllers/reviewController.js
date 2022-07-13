@@ -36,10 +36,10 @@ const createReview = async function (req, res) {
 
 
         if (!isValid(rating)) {
-            return res.status(400).send({ status: false, message: "Title is Required" })
+            return res.status(400).send({ status: false, message: "Rating is Required" })
         }
 
-        if (!ratingRegex.test(rating)) return res.status(400).send({ status: false, message: "Not a valid rating, it should be within 0 - 5" })
+        if (!ratingRegex.test(rating)) return res.status(400).send({ status: false, message: "Not a valid rating, it should be within 1 - 5" })
 
 
         let findBookId = await bookModel.findById(bookId)

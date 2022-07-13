@@ -47,4 +47,6 @@ const bookSchema = new mongoose.Schema({
         required: [true, 'Category is required']
     }
 }, { timestamps: true });
+
+
 module.exports = mongoose.model("Book", bookSchema);
