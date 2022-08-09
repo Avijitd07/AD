@@ -1,7 +1,7 @@
 const userModel = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const objectId = require('mongoose').Types.ObjectId
+//const objectId = require('mongoose').Types.ObjectId
 const { uploadFile } = require('../middleWare/fileUpload');
 
 const saltRounds = 10;
@@ -35,9 +35,9 @@ const createUser = async function (req, res) {
         let profileImage = req.files
 
         if (profileImage.length == 0) {
-            return res.status(400).send({ status: false, message: "Plesae upload the profile image." });
+            return res.status(400).send({ status: false, message: "Please upload the profile image." });
         } else if (profileImage.length > 1) {
-            return res.status(400).send({ status: false, message: "Plesae upload only one image." });
+            return res.status(400).send({ status: false, message: "Please upload only one image." });
         }
         if (!isValidImage(profileImage[0].originalname)) {
             return res.status(400).send({ status: false, message: "Please upload only image file" });

@@ -60,7 +60,7 @@ const createProduct = async function (req, res) {
         let { title, description, price, currencyId, currencyFormat, availableSizes, style, installments, ...rest } = body;
 
         //validations
-        if(Object.keys(rest).length>0) return res.status(400).send({status:false,message:'please put valid keys'})
+        if (Object.keys(rest).length > 0) return res.status(400).send({ status: false, message: 'please put valid keys' })
 
         if (!isValid(title)) {
             return res.status(400).send({ status: false, message: "title is Required" })
@@ -133,7 +133,7 @@ const getProduct = async function (req, res) {
         let query = req.query
         let { size, name, priceGreaterThan, priceLessThan, priceSort, ...rest } = query;
 
-        if(Object.keys(rest).length>0) return res.status(400).send({status:false,message:'please put valid keys'})
+        if (Object.keys(rest).length > 0) return res.status(400).send({ status: false, message: 'please put valid keys' })
 
         let filterData = { isDeleted: false };
         let sort = {};
@@ -208,7 +208,7 @@ const updateProductDetails = async function (req, res) {
         const files = req.files
         const updateData = req.body
 
-        let { title, description, price, style, availableSizes, installments, isFreeShipping } = updateData
+        let { title, description, price, style, availableSizes, installments, isFreeShipping, ...rest } = updateData
 
 
         if (files && files.length > 0) {
@@ -223,7 +223,7 @@ const updateProductDetails = async function (req, res) {
         }
 
         if (!ObjectId.isValid(productId)) return res.status(400).send({ status: false, msg: "invalid product Id" })
-
+        if (Object.keys(rest).length > 0) return res.status(400).send({ status: false, message: 'please put valid keys' })
         if (!isValidBody(updateData)) {
             return res.status(400).send({ status: false, message: "Invalid Request Parameter, Please Provide Another Details" });
         }

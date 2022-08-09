@@ -34,7 +34,7 @@ const orderCreate = async function (req, res) {
 
         if (!ObjectId.isValid(cartId)) return res.status(400).send({ status: false, message: 'please put a valid cartId' })
         let cartData = await cartModel.findOne({ userId: userId })
-        console.log(cartData._id)
+        //console.log(cartData._id)
         if (!cartData) return res.status(404).send({ status: false, message: 'cart not found for the user' })
         if (cartId !== cartData._id.toString()) return res.status(400).send({ status: false, message: 'this cart is not for this login userr' })
         let items = cartData.items
